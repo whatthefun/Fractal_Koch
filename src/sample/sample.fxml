@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<VBox prefHeight="600.0"
+      prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/8"
+      fx:controller="sample.Controller"
+      xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="vbox">
+
+        <HBox styleClass="container">
+            <Canvas height="500" width="600" fx:id="canvas"/>
+        </HBox>
+
+
+       <HBox>
+           <Label styleClass="unit" >幾邊形</Label>
+           <TextField styleClass="unit" fx:id="edtPolygon">3</TextField>
+           <Label styleClass="unit">等級</Label>
+           <TextField styleClass="unit" fx:id="edtLevel">1</TextField>
+           <Button fx:id="btnSubmit" onAction="#btnSubmitOnAction" styleClass="unit">Go</Button>
+       </HBox>
+        <Label fx:id="txtHint"/>
+</VBox>
