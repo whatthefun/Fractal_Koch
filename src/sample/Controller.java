@@ -11,7 +11,7 @@ import javafx.scene.shape.StrokeLineCap;
 public class Controller {
 
     private static final double MAX_LENGTH = 600;
-    private static final int exterior_angles_sum = 360;
+    private static final int exterior_angles_sum = 360; //外角和
     private int polygon, level;
     private GraphicsContext gc;
 
@@ -31,6 +31,7 @@ public class Controller {
         }
     }
 
+    //查驗使用者輸入值
     private boolean verification() {
         try {
             polygon = Integer.parseInt(edtPolygon.getText());
@@ -67,12 +68,20 @@ public class Controller {
                 MAX_LENGTH - 100, -90, level, 1);
     }
 
+    /*
+    * 參數為座標、長度、角度、剩幾階、順/逆時針
+    * 若是最後一階就利用座標、長度、角度算出終點，並劃出來。
+    * 否則，將直線分成三個等分，一三段直接繼續遞迴
+    * 第二段要做一個正多變形，而第一個邊不用畫
+    * 每次都要轉(外角和/邊)度。
+    * 而下一次會轉向，所以將 * */
     private void koch(double startX, double startY, double length, int angle, int leftLevel, int clockwise) {
         if (leftLevel == -1) { //termination condition
-            gc.strokeLine(startX, startY, startX + length * Math.sin(Math.toRadians(angle)), startY + length * Math.cos(Math.toRadians(angle)));
+            gc.strokeLine(startX, startY, startX + length * Math.sin(Math.toRadians(angle)),
+                    startY + length * Math.cos(Math.toRadians(angle)));
         } else {
-            koch(startX, startY, length / 3, angle, leftLevel - 1, clockwise);
-            double x = startX + length / 3 * Math.sin(Math.toRadians(angle)); //第二點
+            koch(startX, startY, length / 3, angle, leftLevel - 1, clockwise);//第一段
+            double x = startX + length / 3 * Math.sin(Math.toRadians(angle)); //第二點位置
             double y = startY + length / 3 * Math.cos(Math.toRadians(angle));
             int degree = angle;
             if (clockwise < 0) {
@@ -90,7 +99,9 @@ public class Controller {
                     koch(x, y, length / 3, degree, leftLevel - 1, clockwise * -1);
                 }
             }
-            koch(startX + length * 2 / 3 * Math.sin(Math.toRadians(angle)), startY + length * 2 / 3 * Math.cos(Math.toRadians(angle)), length / 3, angle, leftLevel - 1, clockwise);
+            koch(startX + length * 2 / 3 * Math.sin(Math.toRadians(angle)),
+                    startY + length * 2 / 3 * Math.cos(Math.toRadians(angle)),
+                    length / 3, angle, leftLevel - 1, clockwise);//第三段
         }
     }
 }
