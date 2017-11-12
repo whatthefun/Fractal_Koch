@@ -24,7 +24,7 @@
            <Label styleClass="unit" >幾邊形</Label>
            <TextField styleClass="unit" fx:id="edtPolygon">3</TextField>
            <Label styleClass="unit">等級</Label>
-           <TextField styleClass="unit" fx:id="edtLevel">1</TextField>
+           <TextField styleClass="unit" fx:id="edtLevel">0</TextField>
            <Button fx:id="btnSubmit" onAction="#btnSubmitOnAction" styleClass="unit">Go</Button>
        </HBox>
         <Label fx:id="txtHint"/>

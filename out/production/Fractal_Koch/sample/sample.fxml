@@ -1,22 +1,31 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<VBox fx:controller="sample.Controller"
-      xmlns:fx="http://javafx.com/fxml" alignment="center" >
-    <Canvas height="500" width="600">
+<?import javafx.scene.control.Button?>
+<VBox prefHeight="600.0"
+      prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/8"
+      fx:controller="sample.Controller"
+      xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="vbox">
 
-    </Canvas>
-    <HBox>
-        <Label></Label>
-        <TextField></TextField>
-        <Label></Label>
-        <TextField></TextField>
-        <Button></Button>
-    </HBox>
+        <HBox styleClass="container">
+            <Canvas height="500" width="600" fx:id="canvas"/>
+        </HBox>
+
+
+       <HBox>
+           <Label styleClass="unit" >幾邊形</Label>
+           <TextField styleClass="unit" fx:id="edtPolygon">3</TextField>
+           <Label styleClass="unit">等級</Label>
+           <TextField styleClass="unit" fx:id="edtLevel">0</TextField>
+           <Button fx:id="btnSubmit" onAction="#btnSubmitOnAction" styleClass="unit">Go</Button>
+       </HBox>
+        <Label fx:id="txtHint"/>
 </VBox>
